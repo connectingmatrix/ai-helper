@@ -1097,6 +1097,11 @@ only@~0.0.2:
   resolved "https://registry.yarnpkg.com/only/-/only-0.0.2.tgz#2afde84d03e50b9a8edc444e30610a70295edfb4"
   integrity sha512-Fvw+Jemq5fjjyWz6CpKx6w9s7xxqo3+JCyM0WXWeCSOboZ8ABkyvP8ID4CZuChA/wxSx+XSJmdOm8rGVyJ1hdQ==
 
+openai@^6.6.0:
+  version "6.29.0"
+  resolved "https://registry.yarnpkg.com/openai/-/openai-6.29.0.tgz#933d9df2df24bbab33196a7969494b88d985af94"
+  integrity sha512-YxoArl2BItucdO89/sN6edksV0x47WUTgkgVfCgX7EuEMhbirENsgYe5oO4LTjBL9PtdKtk2WqND1gSLcTd2yw==
+
 option@~0.2.1:
   version "0.2.4"
   resolved "https://registry.yarnpkg.com/option/-/option-0.2.4.tgz#fd475cdf98dcabb3cb397a3ba5284feb45edbfe4"
@@ -1301,6 +1306,11 @@ send@~0.19.0, send@~0.19.1:
     on-finished "~2.4.1"
     range-parser "~1.2.1"
     statuses "~2.0.2"
+
+serpapi@^2.2.1:
+  version "2.2.1"
+  resolved "https://registry.yarnpkg.com/serpapi/-/serpapi-2.2.1.tgz#6da93ffda55eb96a977b4d39ae74b940ebc5d904"
+  integrity sha512-1HXXaIwDmYueFPauAggIkzozMi5P/a4/yRUxB8Z1kad0VQE/7ohf9a6xRQ99aXR252itDChfmJUfBdCA4phCYA==
 
 serve-static@~1.16.2:
   version "1.16.3"

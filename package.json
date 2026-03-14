@@ -14,6 +14,26 @@
       "types": "./dist/giga-auth/index.d.ts",
       "require": "./dist/giga-auth/index.js",
       "default": "./dist/giga-auth/index.js"
+    },
+    "./chunking": {
+      "types": "./dist/chunking/index.d.ts",
+      "require": "./dist/chunking/index.js",
+      "default": "./dist/chunking/index.js"
+    },
+    "./embeddings": {
+      "types": "./dist/embeddings/index.d.ts",
+      "require": "./dist/embeddings/index.js",
+      "default": "./dist/embeddings/index.js"
+    },
+    "./embedding": {
+      "types": "./dist/embeddings/index.d.ts",
+      "require": "./dist/embeddings/index.js",
+      "default": "./dist/embeddings/index.js"
+    },
+    "./serp-search": {
+      "types": "./dist/serp-search/index.d.ts",
+      "require": "./dist/serp-search/index.js",
+      "default": "./dist/serp-search/index.js"
     }
   },
   "files": [
@@ -37,8 +57,10 @@
     "lodash": "^4.17.21",
     "mammoth": "^1.11.0",
     "mime-db": "^1.54.0",
+    "openai": "^6.6.0",
     "pdf-parse": "^2.4.5",
-    "routing-controllers": "^0.9.0"
+    "routing-controllers": "^0.9.0",
+    "serpapi": "^2.2.1"
   },
   "devDependencies": {
     "@types/lodash": "^4.17.20",

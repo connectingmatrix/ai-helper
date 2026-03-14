@@ -25,3 +25,21 @@ yarn build
 ```ts
 import { login, signup, verifyOtp } from 'giga-ai-helper/giga-auth';
 ```
+
+- Chunking exports are available at:
+
+```ts
+import { chunkText, ChunkUnit, ChunkingOptions } from 'giga-ai-helper/chunking';
+```
+
+- Embedding exports are available at:
+
+```ts
+import { createEmbedding, createEmbeddings, EmbeddingVector } from 'giga-ai-helper/embeddings';
+```
+
+- SERP search exports are available at:
+
+```ts
+import { searchSerpWeb, SerpSearchResponse } from 'giga-ai-helper/serp-search';
+```

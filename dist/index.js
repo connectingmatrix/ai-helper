@@ -26,3 +26,6 @@ __exportStar(require("./scoring-utils"), exports);
 __exportStar(require("./action-utils"), exports);
 __exportStar(require("./file-utils"), exports);
 __exportStar(require("./giga-auth"), exports);
+__exportStar(require("./chunking"), exports);
+__exportStar(require("./embeddings"), exports);
+__exportStar(require("./serp-search"), exports);

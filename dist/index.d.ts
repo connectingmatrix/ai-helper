@@ -10,4 +10,7 @@ export * from './scoring-utils';
 export * from './action-utils';
 export * from './file-utils';
 export * from './giga-auth';
+export * from './chunking';
+export * from './embeddings';
+export * from './serp-search';
 //# sourceMappingURL=index.d.ts.map
