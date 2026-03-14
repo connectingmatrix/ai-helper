@@ -1,0 +1,1 @@
+{"version":3,"file":"send-signin-with-otp-email.d.ts","sourceRoot":"","sources":["../../src/giga-auth/send-signin-with-otp-email.ts"],"names":[],"mappings":"AAAA,OAAO,EAAE,cAAc,EAAE,MAAM,uBAAuB,CAAC;AAIvD,wBAAsB,sBAAsB,CAC1C,QAAQ,EAAE,cAAc,EACxB,KAAK,EAAE,MAAM,EACb,UAAU,CAAC,EAAE,MAAM,GAClB,OAAO,CAAC;IAAE,OAAO,EAAE,MAAM,CAAA;CAAE,CAAC,CAqB9B"}

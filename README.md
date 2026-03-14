@@ -20,3 +20,8 @@ yarn build
 - Types: `Nullable`, `JsonObject`, `StringLike`, `MimeFileLike`, `BinaryFileLike`
 - MIME constants and derived lists/maps
 - String, tag, JSON, file, vector, scoring, number, path, and action utilities
+- Auth service exports from `src/services/auth` are available at:
+
+```ts
+import { login, signup, verifyOtp } from 'giga-ai-helper/giga-auth';
+```

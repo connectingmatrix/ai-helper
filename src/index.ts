@@ -9,3 +9,4 @@ export * from './vector-utils';
 export * from './scoring-utils';
 export * from './action-utils';
 export * from './file-utils';
+export * from './giga-auth';
