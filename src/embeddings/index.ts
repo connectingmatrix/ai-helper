@@ -7,6 +7,11 @@ export type EmbeddingVector = {
   pgVector: string;
 };
 
+export type BlendedVectorResult = {
+  vector: number[];
+  count: number;
+};
+
 export type EmbeddingClient = Pick<OpenAI, 'embeddings'>;
 
 export type EmbeddingOptions = {
@@ -100,4 +105,28 @@ export async function createEmbeddings(
       pgVector: toPgVector(item.embedding),
     };
   });
+}
+
+export function blendVectors(
+  existingVector: number[] | null,
+  newVector: number[],
+  existingCount: number,
+): BlendedVectorResult {
+  if (!existingVector || existingVector.length !== newVector.length) {
+    return {
+      vector: newVector,
+      count: 1,
+    };
+  }
+
+  const baseCount = existingCount > 0 ? existingCount : 1;
+  const nextCount = baseCount + 1;
+  const blended = newVector.map(
+    (value, index) => ((existingVector[index] * baseCount) + value) / nextCount,
+  );
+
+  return {
+    vector: blended,
+    count: nextCount,
+  };
 }

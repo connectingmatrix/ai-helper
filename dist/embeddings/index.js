@@ -6,6 +6,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.DEFAULT_EMBEDDING_MODEL = void 0;
 exports.createEmbedding = createEmbedding;
 exports.createEmbeddings = createEmbeddings;
+exports.blendVectors = blendVectors;
 const openai_1 = __importDefault(require("openai"));
 const vector_utils_1 = require("../vector-utils");
 exports.DEFAULT_EMBEDDING_MODEL = 'text-embedding-3-small';
@@ -73,4 +74,19 @@ async function createEmbeddings(inputs, options) {
             pgVector: (0, vector_utils_1.toPgVector)(item.embedding),
         };
     });
+}
+function blendVectors(existingVector, newVector, existingCount) {
+    if (!existingVector || existingVector.length !== newVector.length) {
+        return {
+            vector: newVector,
+            count: 1,
+        };
+    }
+    const baseCount = existingCount > 0 ? existingCount : 1;
+    const nextCount = baseCount + 1;
+    const blended = newVector.map((value, index) => ((existingVector[index] * baseCount) + value) / nextCount);
+    return {
+        vector: blended,
+        count: nextCount,
+    };
 }
