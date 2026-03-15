@@ -13,4 +13,5 @@ export * from './giga-auth';
 export * from './chunking';
 export * from './embeddings';
 export * from './serp-search';
+export * from './workflow';
 //# sourceMappingURL=index.d.ts.map

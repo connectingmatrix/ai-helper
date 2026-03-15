@@ -43,3 +43,15 @@ import { createEmbedding, createEmbeddings, EmbeddingVector } from 'giga-ai-help
 ```ts
 import { searchSerpWeb, SerpSearchResponse } from 'giga-ai-helper/serp-search';
 ```
+
+- Workflow runtime/logger exports are available at:
+
+```ts
+import {
+  createJsonlWorkflowLogger,
+  logNodeStarted,
+  logNodeFinished,
+  parseRecordValue,
+  parseHeaderRecord,
+} from 'giga-ai-helper/workflow';
+```
