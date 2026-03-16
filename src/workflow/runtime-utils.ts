@@ -1,9 +1,55 @@
 import { GoogleGenerativeAI } from '@google/generative-ai';
+import OpenAI from 'openai';
 import vm from 'vm';
 
 import { safeJsonParse } from '../json-utils';
 import { toNumberOrNull } from '../number-utils';
 import { WorkflowFileEnvelope, WorkflowMulterFileLike } from './types';
+
+export type OpenAIResponsesClient = Pick<OpenAI, 'responses'>;
+
+export type WorkflowProviderResponse = {
+  provider: string;
+  model: string;
+  text: string;
+  raw: unknown;
+};
+
+export type WorkflowRouteModelCandidate<TModel extends string = string> = {
+  model: TModel;
+  nodeId?: string;
+};
+
+export type WorkflowRouteModelResult<TModel extends string = string> = {
+  selectedModel: TModel;
+  routingReasoning: string;
+  rawText: string;
+  raw: unknown;
+};
+
+let cachedOpenAIClient: OpenAIResponsesClient | null = null;
+
+const resolveOpenAIClient = (options?: {
+  apiKey?: string;
+  client?: OpenAIResponsesClient;
+}): OpenAIResponsesClient => {
+  if (options?.client) return options.client;
+
+  const explicitApiKey = parseStringValue(options?.apiKey).trim();
+  if (explicitApiKey) {
+    return new OpenAI({ apiKey: explicitApiKey });
+  }
+
+  if (cachedOpenAIClient) return cachedOpenAIClient;
+
+  const envApiKey = parseStringValue(process.env.OPENAI_API_KEY).trim();
+  if (!envApiKey) {
+    throw new Error('OPENAI_API_KEY is not configured.');
+  }
+
+  cachedOpenAIClient = new OpenAI({ apiKey: envApiKey });
+  return cachedOpenAIClient;
+};
 
 export const isObjectRecord = (value: unknown): value is Record<string, unknown> => (
   typeof value === 'object' && value !== null && !Array.isArray(value)
@@ -312,6 +358,271 @@ export const callGroqModel = async (
     model: resolvedModel,
     raw: payload,
   };
+};
+
+export const callOpenAIModel = async (
+  modelName: string,
+  prompt: string,
+  options?: {
+    apiKey?: string;
+    client?: OpenAIResponsesClient;
+    temperature?: number;
+    instructions?: string;
+  },
+): Promise<unknown> => {
+  const client = resolveOpenAIClient({
+    apiKey: options?.apiKey,
+    client: options?.client,
+  });
+  const resolvedModel = modelName || 'gpt-4.1-mini';
+  const temperature = toNumberOrNull(options?.temperature);
+  const instructions = parseStringValue(options?.instructions).trim();
+
+  const response = await client.responses.create({
+    model: resolvedModel,
+    input: prompt,
+    temperature: temperature === null ? undefined : temperature,
+    instructions: instructions || undefined,
+  } as any);
+
+  return {
+    text: parseStringValue((response as { output_text?: unknown }).output_text).trim(),
+    model: resolvedModel,
+    raw: response,
+  };
+};
+
+const extractAssistantTextFromChatCompletionsResponse = (response: unknown): string => {
+  if (!response || typeof response !== 'object' || Array.isArray(response)) {
+    return '';
+  }
+
+  const choices = (response as { choices?: unknown[] }).choices;
+  if (!Array.isArray(choices) || choices.length === 0) {
+    return '';
+  }
+
+  const firstChoice = choices[0];
+  if (!firstChoice || typeof firstChoice !== 'object' || Array.isArray(firstChoice)) {
+    return '';
+  }
+
+  const message = (firstChoice as { message?: unknown }).message;
+  if (!message || typeof message !== 'object' || Array.isArray(message)) {
+    return '';
+  }
+
+  const content = (message as { content?: unknown }).content;
+  if (typeof content === 'string') {
+    return content.trim();
+  }
+
+  return '';
+};
+
+export const callOpenAiCompatibleModel = async (params: {
+  provider: string;
+  endpoint: string;
+  apiKey: string;
+  model: string;
+  prompt: string;
+  temperature?: number;
+  signal?: AbortSignal;
+}): Promise<WorkflowProviderResponse> => {
+  const response = await fetch(params.endpoint, {
+    method: 'POST',
+    headers: {
+      Authorization: `Bearer ${params.apiKey}`,
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      model: params.model,
+      messages: [{ role: 'user', content: params.prompt }],
+      temperature: params.temperature ?? 0.2,
+    }),
+    signal: params.signal,
+  });
+
+  const responseBody = await response.json().catch(() => ({}));
+  if (!response.ok) {
+    const message = parseStringValue(
+      (responseBody as { error?: { message?: unknown } })?.error?.message,
+    ).trim() || `${params.provider} request failed with status ${response.status}.`;
+    throw new Error(message);
+  }
+
+  const text = extractAssistantTextFromChatCompletionsResponse(responseBody);
+
+  return {
+    provider: params.provider,
+    model: params.model,
+    text,
+    raw: responseBody,
+  };
+};
+
+export const callDeepSeekModel = async (
+  modelName: string,
+  prompt: string,
+  options?: { apiKey?: string; temperature?: number; signal?: AbortSignal },
+): Promise<WorkflowProviderResponse> => {
+  const apiKey = parseStringValue(options?.apiKey || process.env.DEEPSEEK_API_KEY).trim();
+  if (!apiKey) {
+    throw new Error('DEEPSEEK_API_KEY is not configured.');
+  }
+
+  return callOpenAiCompatibleModel({
+    provider: 'deepseek',
+    endpoint: 'https://api.deepseek.com/chat/completions',
+    apiKey,
+    model: modelName || 'deepseek-chat',
+    prompt,
+    temperature: options?.temperature ?? 0.2,
+    signal: options?.signal,
+  });
+};
+
+export const callPerplexityModel = async (
+  modelName: string,
+  prompt: string,
+  options?: { apiKey?: string; temperature?: number; signal?: AbortSignal },
+): Promise<WorkflowProviderResponse> => {
+  const apiKey = parseStringValue(options?.apiKey || process.env.PERPLEXITY_API_KEY).trim();
+  if (!apiKey) {
+    throw new Error('PERPLEXITY_API_KEY is not configured.');
+  }
+
+  return callOpenAiCompatibleModel({
+    provider: 'perplexity',
+    endpoint: 'https://api.perplexity.ai/chat/completions',
+    apiKey,
+    model: modelName || 'sonar',
+    prompt,
+    temperature: options?.temperature ?? 0.2,
+    signal: options?.signal,
+  });
+};
+
+export const callMistralModel = async (
+  modelName: string,
+  prompt: string,
+  options?: { apiKey?: string; temperature?: number; signal?: AbortSignal },
+): Promise<WorkflowProviderResponse> => {
+  const apiKey = parseStringValue(options?.apiKey || process.env.MISTRAL_API_KEY).trim();
+  if (!apiKey) {
+    throw new Error('MISTRAL_API_KEY is not configured.');
+  }
+
+  return callOpenAiCompatibleModel({
+    provider: 'mistral',
+    endpoint: 'https://api.mistral.ai/v1/chat/completions',
+    apiKey,
+    model: modelName || 'mistral-large-latest',
+    prompt,
+    temperature: options?.temperature ?? 0.2,
+    signal: options?.signal,
+  });
+};
+
+const serializeForPrompt = (value: unknown): string => {
+  try {
+    return JSON.stringify(value, null, 2);
+  } catch {
+    return parseStringValue(value);
+  }
+};
+
+export const routeModelCandidateWithOpenAI = async <TModel extends string>(params: {
+  candidates: Array<WorkflowRouteModelCandidate<TModel>>;
+  routingPrompt: string;
+  workflowInput: unknown;
+  routerModel?: string;
+  apiKey?: string;
+  client?: OpenAIResponsesClient;
+}): Promise<WorkflowRouteModelResult<TModel>> => {
+  if (!params.candidates.length) {
+    throw new Error('At least one candidate is required for model routing.');
+  }
+
+  if (params.candidates.length === 1) {
+    return {
+      selectedModel: params.candidates[0].model,
+      routingReasoning: 'Single candidate available.',
+      rawText: '',
+      raw: null,
+    };
+  }
+
+  const prompt = [
+    'You are routing a workflow governor to one model candidate.',
+    'Return strict JSON only using this shape:',
+    '{"selectedModel":"model-id","reasoning":"short reason"}',
+    '',
+    `Routing instruction: ${params.routingPrompt}`,
+    '',
+    `Candidates: ${serializeForPrompt(params.candidates)}`,
+    '',
+    `Workflow input: ${serializeForPrompt(params.workflowInput)}`,
+  ].join('\n');
+
+  const response = await callOpenAIModel(
+    params.routerModel || 'gpt-4.1-mini',
+    prompt,
+    {
+      apiKey: params.apiKey,
+      client: params.client,
+      temperature: 0.1,
+      instructions: 'Return JSON only. selectedModel must be one of provided candidates.',
+    },
+  );
+
+  const responseRaw = (response as { raw?: unknown }).raw;
+  const rawText = parseStringValue(
+    (responseRaw as { output_text?: unknown })?.output_text,
+  ).trim();
+  if (!rawText) {
+    return {
+      selectedModel: params.candidates[0].model,
+      routingReasoning: 'Router returned empty payload, fallback to first candidate.',
+      rawText,
+      raw: responseRaw,
+    };
+  }
+
+  try {
+    const parsed = JSON.parse(rawText) as {
+      selectedModel?: unknown;
+      reasoning?: unknown;
+    };
+    const selectedModelRaw = parseStringValue(parsed.selectedModel).trim();
+    const selectedCandidate = params.candidates.find(
+      (candidate) => candidate.model === selectedModelRaw,
+    );
+
+    if (!selectedCandidate) {
+      return {
+        selectedModel: params.candidates[0].model,
+        routingReasoning: 'Router selected unsupported model, fallback to first candidate.',
+        rawText,
+        raw: responseRaw,
+      };
+    }
+
+    return {
+      selectedModel: selectedCandidate.model,
+      routingReasoning:
+        parseStringValue(parsed.reasoning).trim() || 'Router selected candidate.',
+      rawText,
+      raw: responseRaw,
+    };
+  } catch {
+    return {
+      selectedModel: params.candidates[0].model,
+      routingReasoning: 'Router payload parsing failed, fallback to first candidate.',
+      rawText,
+      raw: responseRaw,
+    };
+  }
 };
 
 const splitCsvLine = (line: string): string[] => {
