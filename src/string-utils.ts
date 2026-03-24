@@ -14,6 +14,10 @@ export function stripCodeFence(value: string): string {
     .trim();
 }
 
+export function stripCodeFences(value: string): string {
+  return stripCodeFence(value);
+}
+
 export function unique(values: Array<StringLike>): string[] {
   return uniq(values.map((value) => String(value || '').trim()).filter(Boolean));
 }

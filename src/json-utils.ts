@@ -12,6 +12,10 @@ export function safeJsonParse<T = unknown>(value: string): T | null {
   }
 }
 
+export function safeParseJson<T = unknown>(value: string): T | null {
+  return safeJsonParse<T>(value);
+}
+
 export function tryParseJson<T = unknown>(text: string): T | null {
   return safeJsonParse<T>(text);
 }
