@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+
+REPO_ROOT=$(CDPATH= cd -- "$(dirname "$0")/../.." && pwd)
+PORTABLE_ROOT_REL=$(node -e "const fs=require('fs'); const value=JSON.parse(fs.readFileSync(process.argv[1], 'utf8')); process.stdout.write(value.portableRootRelative);" "$REPO_ROOT/.ai/state/portable-root.json")
+PORTABLE_ROOT=$(CDPATH= cd -- "$REPO_ROOT/$PORTABLE_ROOT_REL" && pwd)
+
+exec node "$PORTABLE_ROOT/tools/dist/cli.js" context --repo "$REPO_ROOT" "$@"

@@ -1,0 +1,32 @@
+# managed-by: PortableCoder
+name: PortableCoder ai-helper
+version: 1
+models:
+  - name: qwen2.5-coder-14b
+    provider: ollama
+    model: qwen2.5-coder:14b
+  - name: qwen2.5-coder-1.5b
+    provider: ollama
+    model: qwen2.5-coder:1.5b
+    roles:
+      - autocomplete
+  - name: deepseek-coder-v2-16b
+    provider: ollama
+    model: deepseek-coder-v2:16b
+context:
+  - provider: codebase
+  - provider: diff
+rules:
+  - Codex Studio is the source of truth for coding, orchestration, review, and standards.
+  - Read AGENTS.md, .ai/state/architecture-context.md, and .ai/state/codex-context.md before proposing major edits.
+  - If repo docs or generated context look stale, suggest running ./.ai/bin/ai-context-build.
+  - Prefer repo-local prompts and generated AI memory over generic advice.
+  - Treat the PortableCoder brain as the default route; Codex-backed execution should stay locked until the operator explicitly runs /brain allow codex.
+  - After meaningful changes, remind the operator to run ./.ai/bin/ai-sync.
+  - If local-model features fail, run ./tools/brain doctor from the PortableCoder root first.
+prompts:
+  - name: ai-context
+    description: Review current repo memory before starting work.
+    prompt: |
+      Read AGENTS.md, .ai/state/architecture-context.md, and .ai/state/codex-context.md first.
+      Summarize the repo standards, architecture context, latest memory, and validation commands before planning edits.

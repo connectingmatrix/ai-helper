@@ -55,3 +55,25 @@ import {
   parseHeaderRecord,
 } from 'giga-ai-helper/workflow';
 ```
+
+## Normalize helper
+
+Use `normalize` to map incoming records into class-shaped objects with implicit key normalizing and safe type coercion.
+
+```ts
+import { normalize } from 'giga-ai-helper';
+
+class OrgRestriction {
+  organizationId: string | null = null;
+  userId: string | null = null;
+  reason: string | null = null;
+  createdAt: string | null = null;
+}
+
+const normalized = normalize(row, OrgRestriction);
+```
+
+By default:
+- string fields are trimmed and become `null` when empty/invalid (`toOptionalString` behavior)
+- boolean fields are normalized via `toSafeBoolean`
+- unknown keys are camel-cased (`created_at` → `createdAt`)
