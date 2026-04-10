@@ -11,6 +11,8 @@ import {
 } from './constants/mime';
 import { BinaryFileLike, MimeFileLike } from './types';
 
+PDFParse.setWorker(require.resolve('pdfjs-dist/legacy/build/pdf.worker.mjs'));
+
 export function getExtensionFromMimeType(
   file: MimeFileLike,
   mimeExtensionMap: Record<string, string> = DEFAULT_MIME_EXTENSION_MAP,
