@@ -1,6 +1,6 @@
 # Retrieval Index: ai-helper
 
-- Generated: 2026-04-05T12:06:39.320Z
+- Generated: 2026-04-17T07:44:59.979Z
 - Repo path: `giga/ai-helper`
 - Package manager: `yarn`
 - Validations:
@@ -390,6 +390,7 @@ File: AGENTS.md
 - `.DS_Store`
 - `.gitignore`
 - `AGENTS.md`
+- `ai-helper.zip`
 - `package.json`
 - `README.md`
 - `src/`
@@ -422,6 +423,7 @@ File: AGENTS.md
 - `src/normalize-utils.ts`
 - `src/number-utils.ts`
 - `src/path-utils.ts`
+- `src/pdf-worker.d.ts`
 - `src/safe-utils.ts`
 - `src/scoring-utils.ts`
 - `src/serp-search/`
@@ -444,85 +446,75 @@ File: AGENTS.md
 ### Item 1
 
 ---
-id: ai-helper--ec6b735c-20260405T120638Z-summary
+id: ai-helper--ec6b735c-20260410T175804Z-summary
 type: summary
 project: ai-helper--ec6b735c
-timestamp: 2026-04-05T12:06:38.573Z
+timestamp: 2026-04-10T17:58:04.595Z
 branch: main
-commit: 2d2d2235cd2df229cfa15a48565ec52743e2cf27
-summary: Updated AGENTS and brain prompts with codex plan export rules.
-tags: sync
-files: ai/prompts/preflight.md, .ai/prompts/summary.md, .ai/state/architecture-context.md, .ai/state/codex-context.md, .ai/state/retrieval.md, AGENTS.md, package.json
-relatedCommit: 2d2d2235cd2df229cfa15a48565ec52743e2cf27
----
-
-# Meaningful change summary
-
-Updated AGENTS and brain prompts with codex plan export rules.
-
-- 
+commit: 64e36bde4c58ffb94f220e4d6809088d6e5b1810
+summary: Synchronized Codex thread 019d5e21-35b0-79a0-b904-d3f698e4faf7 into shared project memory.
+tags: codex-sync, session-sync
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/
 ...
 
 ### Item 2
 
 ---
-id: ai-helper--ec6b735c-20260405T120638Z-summary
+id: ai-helper--ec6b735c-20260410T175803Z-summary
 type: summary
 project: ai-helper--ec6b735c
-timestamp: 2026-04-05T12:06:38.797Z
+timestamp: 2026-04-10T17:58:03.363Z
 branch: main
-commit: 2d2d2235cd2df229cfa15a48565ec52743e2cf27
-summary: Synchronized Codex thread 019d5d7b-ae9e-7ee2-aab7-416a8648f3d1 into shared project memory.
-tags: codex-sync, session-sync
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper/AGENTS.md, /Users/abeer/dev/giga/ai-helper/.ai/prompts/preflight.md, /Users/abeer/dev/giga/ai-helper/.ai/prompts/summary.md
-relatedCommit: 
----
-
-# Codex session sync
-
-Codex session `019d5d7b-ae9e-7ee2-aa
-...
-
-### Item 3
-
----
-id: ai-helper--ec6b735c-20260325T095720Z-summary
-type: summary
-project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:57:20.611Z
-branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Synchronized Codex thread 019d2452-c699-7603-953f-ca7109ce705a into shared project memory.
-tags: codex-sync, session-sync
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session sync
-
-Codex session `019d2452-c699-7603-953f-ca7109ce
-...
-
-### Item 4
-
----
-id: ai-helper--ec6b735c-20260325T095719Z-summary
-type: summary
-project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:57:19.415Z
-branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
+commit: 64e36bde4c58ffb94f220e4d6809088d6e5b1810
 summary: Synchronized current repo state into shared project memory.
 tags: sync
-files: EADME.md, src/normalize-utils.ts, .ai/, .continue/, AGENTS.md, src/workflow/value-utils.ts
-relatedCommit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
+files: ai/state/codex-context.md, .ai/state/retrieval.md, src/file-utils.ts, src/pdf-worker.d.ts
+relatedCommit: 64e36bde4c58ffb94f220e4d6809088d6e5b1810
 ---
 
 # Auto sync summary
 
 PortableCoder synchronized the current repo state.
 
-- Changed files: EADME.md, src/normalize-utils.ts, .ai/, .continue/, AGENTS.md, src/workflow/v
+- Changed files: ai/state/codex-context.md, .ai/state/retrieval.md, src/file-utils.ts, src/pdf-
+...
+
+### Item 3
+
+---
+id: ai-helper--ec6b735c-20260410T175351Z-summary
+type: summary
+project: ai-helper--ec6b735c
+timestamp: 2026-04-10T17:53:51.434Z
+branch: main
+commit: 8614d1244781454e1f49f709f8073a3943619d3e
+summary: Synchronized Codex thread 019d5e21-35b0-79a0-b904-d3f698e4faf7 into shared project memory.
+tags: codex-sync, session-sync
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/
+...
+
+### Item 4
+
+---
+id: ai-helper--ec6b735c-20260410T175350Z-summary
+type: summary
+project: ai-helper--ec6b735c
+timestamp: 2026-04-10T17:53:50.701Z
+branch: main
+commit: 8614d1244781454e1f49f709f8073a3943619d3e
+summary: Synchronized current repo state into shared project memory.
+tags: sync
+files: ai/state/codex-context.md, .ai/state/retrieval.md, src/file-utils.ts
+relatedCommit: 8614d1244781454e1f49f709f8073a3943619d3e
+---
+
+# Auto sync summary
+
+PortableCoder synchronized the current repo state.
+
+- Changed files: ai/state/codex-context.md, .ai/state/retrieval.md, src/file-utils.ts
+- Branch: main
+- HEAD: 8614d12
 ...
 
 
@@ -531,46 +523,76 @@ PortableCoder synchronized the current repo state.
 ### Item 1
 
 ---
-id: ai-helper--ec6b735c-20260405T120638Z-transcript
+id: ai-helper--ec6b735c-20260410T175804Z-transcript
 type: transcript
 project: ai-helper--ec6b735c
-timestamp: 2026-04-05T12:06:38.769Z
+timestamp: 2026-04-10T17:58:04.435Z
 branch: main
-commit: 2d2d2235cd2df229cfa15a48565ec52743e2cf27
+commit: 64e36bde4c58ffb94f220e4d6809088d6e5b1810
 summary: Captured the complete chronological user and Codex conversation for this thread.
 tags: codex-sync, transcript
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper/AGENTS.md, /Users/abeer/dev/giga/ai-helper/.ai/prompts/preflight.md, /Users/abeer/dev/giga/ai-helper/.ai/prompts/summary.md
-relatedCommit: 
----
-
-# Codex thread transcript
-
-Codex thread transcript for `019d5d7b
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-u
 ...
 
 ### Item 2
 
 ---
-id: ai-helper--ec6b735c-20260325T095720Z-transcript
+id: ai-helper--ec6b735c-20260410T175351Z-transcript
 type: transcript
 project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:57:20.452Z
+timestamp: 2026-04-10T17:53:51.335Z
 branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
+commit: 8614d1244781454e1f49f709f8073a3943619d3e
 summary: Captured the complete chronological user and Codex conversation for this thread.
 tags: codex-sync, transcript
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex thread transcript
-
-Codex thread transcript for `019d2452-c699-7603-
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-u
 ...
 
 ## Patterns
 
 ### Item 1
+
+---
+id: ai-helper--ec6b735c-20260410T175804Z-pattern
+type: pattern
+project: ai-helper--ec6b735c
+timestamp: 2026-04-10T17:58:04.820Z
+branch: main
+commit: 64e36bde4c58ffb94f220e4d6809088d6e5b1810
+summary: Captured repeatable workflow patterns from the Codex thread.
+tags: codex-sync, pattern
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-utils.ts, /Users/abeer/dev/gig
+...
+
+### Item 2
+
+---
+id: ai-helper--ec6b735c-20260410T175351Z-pattern
+type: pattern
+project: ai-helper--ec6b735c
+timestamp: 2026-04-10T17:53:51.630Z
+branch: main
+commit: 8614d1244781454e1f49f709f8073a3943619d3e
+summary: Captured repeatable workflow patterns from the Codex thread.
+tags: codex-sync, pattern
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-utils.ts, /Users/abeer/dev/gig
+...
+
+### Item 3
+
+---
+id: ai-helper--ec6b735c-20260410T174326Z-pattern
+type: pattern
+project: ai-helper--ec6b735c
+timestamp: 2026-04-10T17:43:26.441Z
+branch: main
+commit: 4dc253a480eeb4af8cc6f98d6e4ab9337642b4cf
+summary: Captured repeatable workflow patterns from the Codex thread.
+tags: codex-sync, pattern
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-utils.ts, /Users/abeer/dev/gig
+...
+
+### Item 4
 
 ---
 id: ai-helper--ec6b735c-20260405T120638Z-pattern
@@ -590,69 +612,51 @@ relatedCommit:
 - - Continue + Ollama are secondary helpers and must follow
 ...
 
+## Decisions
+
+### Item 1
+
+---
+id: ai-helper--ec6b735c-20260410T175804Z-decision
+type: decision
+project: ai-helper--ec6b735c
+timestamp: 2026-04-10T17:58:04.711Z
+branch: main
+commit: 64e36bde4c58ffb94f220e4d6809088d6e5b1810
+summary: Captured explicit working rules and approved defaults from the Codex thread.
+tags: codex-sync, decision
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-utils.ts, /
+...
+
 ### Item 2
 
 ---
-id: ai-helper--ec6b735c-20260325T095720Z-pattern
-type: pattern
+id: ai-helper--ec6b735c-20260410T175351Z-decision
+type: decision
 project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:57:20.942Z
+timestamp: 2026-04-10T17:53:51.532Z
 branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Captured repeatable workflow patterns from the Codex thread.
-tags: codex-sync, pattern
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session working patterns
-
-- - Continue + Ollama are secondary helpers and must follow the same r
+commit: 8614d1244781454e1f49f709f8073a3943619d3e
+summary: Captured explicit working rules and approved defaults from the Codex thread.
+tags: codex-sync, decision
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-utils.ts, /
 ...
 
 ### Item 3
 
 ---
-id: ai-helper--ec6b735c-20260325T095628Z-pattern
-type: pattern
+id: ai-helper--ec6b735c-20260410T174326Z-decision
+type: decision
 project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:56:28.301Z
+timestamp: 2026-04-10T17:43:26.171Z
 branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Captured repeatable workflow patterns from the Codex thread.
-tags: codex-sync, pattern
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session working patterns
-
-- - Continue + Ollama are secondary helpers and must follow the same r
+commit: 4dc253a480eeb4af8cc6f98d6e4ab9337642b4cf
+summary: Captured explicit working rules and approved defaults from the Codex thread.
+tags: codex-sync, decision
+files: /Users/abeer/dev/giga/ai-helper/src, /Users/abeer/dev/giga/ai-helper/src/giga-auth/refresh-token.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/reset-password.ts, /Users/abeer/dev/giga/ai-helper/src/giga-auth/change-password.ts, /Users/abeer/dev/giga/ai-helper/src/file-utils.ts, /
 ...
 
 ### Item 4
-
----
-id: ai-helper--ec6b735c-20260325T095616Z-pattern
-type: pattern
-project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:56:16.300Z
-branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Captured repeatable workflow patterns from the Codex thread.
-tags: codex-sync, pattern
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session working patterns
-
-- - Continue + Ollama are secondary helpers and must follow the same r
-...
-
-## Decisions
-
-### Item 1
 
 ---
 id: ai-helper--ec6b735c-20260405T120638Z-decision
@@ -670,65 +674,5 @@ relatedCommit:
 # Codex session decisions
 
 - - Codex Studio is the authoritative control s
-...
-
-### Item 2
-
----
-id: ai-helper--ec6b735c-20260325T095720Z-decision
-type: decision
-project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:57:20.772Z
-branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Captured explicit working rules and approved defaults from the Codex thread.
-tags: codex-sync, decision
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session decisions
-
-- - Codex Studio is the authoritative control surface for 
-...
-
-### Item 3
-
----
-id: ai-helper--ec6b735c-20260325T095628Z-decision
-type: decision
-project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:56:28.147Z
-branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Captured explicit working rules and approved defaults from the Codex thread.
-tags: codex-sync, decision
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session decisions
-
-- - Codex Studio is the authoritative control surface for 
-...
-
-### Item 4
-
----
-id: ai-helper--ec6b735c-20260325T095616Z-decision
-type: decision
-project: ai-helper--ec6b735c
-timestamp: 2026-03-25T09:56:16.118Z
-branch: main
-commit: ff19de3693aab13d559cc3b219f6b7ca54f8d66d
-summary: Captured explicit working rules and approved defaults from the Codex thread.
-tags: codex-sync, decision
-files: /Users/abeer/dev/giga/ai-helper, /Users/abeer/dev/giga/ai-helper</cwd>, /Users/abeer/dev/giga/ai-helper/src/normalize-utils.ts, /Users/abeer/dev/giga/ai-helper/src/safe-utils.ts
-relatedCommit: 
----
-
-# Codex session decisions
-
-- - Codex Studio is the authoritative control surface for 
 ...
 
