@@ -51,6 +51,28 @@ const resolveOpenAIClient = (options?: {
   return cachedOpenAIClient;
 };
 
+const compactOpenAIResponse = (response: unknown): Record<string, unknown> => {
+  const record = parseRecordValue(response);
+  const jsonValue = (value: unknown): unknown => {
+    if (typeof value === 'undefined') return null;
+    try {
+      return JSON.parse(JSON.stringify(value));
+    } catch {
+      return null;
+    }
+  };
+
+  return {
+    id: parseStringValue(record.id) || null,
+    model: parseStringValue(record.model) || null,
+    status: parseStringValue(record.status) || null,
+    created_at: record.created_at ?? null,
+    output_text: parseStringValue(record.output_text),
+    output: jsonValue(record.output),
+    usage: jsonValue(record.usage),
+  };
+};
+
 export const isObjectRecord = (value: unknown): value is Record<string, unknown> => (
   typeof value === 'object' && value !== null && !Array.isArray(value)
 );
@@ -433,10 +455,12 @@ export const callOpenAIModel = async (
     instructions: instructions || undefined,
   } as any);
 
+  const raw = compactOpenAIResponse(response);
+
   return {
-    text: parseStringValue((response as { output_text?: unknown }).output_text).trim(),
+    text: parseStringValue(raw.output_text).trim(),
     model: resolvedModel,
-    raw: response,
+    raw,
   };
 };
 
